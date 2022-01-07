@@ -34,7 +34,7 @@ public class MainController {
     }
 
     @GetMapping(value = "/edit/{id}")
-    public ModelAndView editPage(@PathVariable("id") int id) {
+    public ModelAndView editPage(@PathVariable("id") Integer id) {
         User user = userService.getById(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("editPage");
@@ -66,7 +66,7 @@ public class MainController {
     }
 
     @GetMapping(value = "/delete/{id}")
-    public ModelAndView deleteUser(@PathVariable("id") int id) {
+    public ModelAndView deleteUser(@PathVariable("id") Integer id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
         User user = userService.getById(id);

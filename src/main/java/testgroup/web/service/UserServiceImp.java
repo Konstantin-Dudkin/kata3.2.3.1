@@ -3,48 +3,44 @@ package testgroup.web.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import testgroup.web.dao.UserDao;
 import testgroup.web.model.User;
+import testgroup.web.repositories.UserRepository;
 
 import java.util.List;
 
 @Service
-public class UserServiceImp implements UserService{
-
-    private UserDao userDao;
+public class UserServiceImp implements UserService {
 
     @Autowired
-    public UserServiceImp(UserDao userDao) {
-        this.userDao = userDao;
-    }
+    private UserRepository userRepository;
 
     @Override
     @Transactional
     public List<User> allUsers() {
-        return userDao.allUsers();
+        return userRepository.findAll();
     }
 
     @Override
     @Transactional
     public void add(User user) {
-        userDao.add(user);
+        userRepository.save(user);
     }
 
     @Override
     @Transactional
     public void delete(User user) {
-        userDao.delete(user);
+        userRepository.delete(user);
     }
 
     @Override
     @Transactional
     public void edit(User user) {
-        userDao.edit(user);
+        userRepository.save(user);
     }
 
     @Override
     @Transactional
-    public User getById(int id) {
-        return userDao.getById(id);
+    public User getById(Integer id) {
+        return userRepository.getById(id);
     }
 }
